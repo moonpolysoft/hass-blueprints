@@ -43,54 +43,6 @@ blueprint:
       default: []
       selector:
         action: {}
-    button_a2:
-      name: Button A - Up/On press 2x
-      description: Action to run, when the button is pressed two times.
-      default: []
-      selector:
-        action: {}
-    button_b2:
-      name: Button B - Down/Off press 2x
-      description: Action to run, when the button is pressed two times.
-      default: []
-      selector:
-        action: {}
-    button_a3:
-      name: Button A - Up/On press 3x
-      description: Action to run, when the button is pressed three times.
-      default: []
-      selector:
-        action: {}
-    button_b3:
-      name: Button B - Down/Off press 3x
-      description: Action to run, when the button is pressed three times.
-      default: []
-      selector:
-        action: {}
-    button_a4:
-      name: Button A - Up/On press 4x
-      description: Action to run, when the button is pressed four times.
-      default: []
-      selector:
-        action: {}
-    button_b4:
-      name: Button B - Down/Off press 4x
-      description: Action to run, when the button is pressed four times.
-      default: []
-      selector:
-        action: {}
-    button_a5:
-      name: Button A - Up/On press 5x
-      description: Action to run, when the button is pressed five times.
-      default: []
-      selector:
-        action: {}
-    button_b5:
-      name: Button B - Down/Off press 5x
-      description: Action to run, when the button is pressed five times.
-      default: []
-      selector:
-        action: {}
 mode: single
 max_exceeded: silent
 variables:
@@ -104,31 +56,15 @@ action:
     scene_id: '{{ (trigger.event.data.new_state.attributes.propertyKey | int) }}'
     state_value_id: '{{ trigger.event.data.new_state.state }}'
 - choose:
-  - conditions: '{{ scene_id == 2 and state_value_id == 0 }}'
-    sequence: !input 'button_a'
   - conditions: '{{ scene_id == 1 and state_value_id == 0 }}'
+    sequence: !input 'button_a'
+  - conditions: '{{ scene_id == 2 and state_value_id == 0 }}'
     sequence: !input 'button_b'
-  - conditions: '{{ scene_id == 2 and state_value_id == 1 }}'
-    sequence: !input 'button_a_released'
   - conditions: '{{ scene_id == 1 and state_value_id == 1 }}'
+    sequence: !input 'button_a_released'
+  - conditions: '{{ scene_id == 2 and state_value_id == 1 }}'
     sequence: !input 'button_b_released'
-  - conditions: '{{ scene_id == 2 and state_value_id == 2 }}'
-    sequence: !input 'button_a_held'
   - conditions: '{{ scene_id == 1 and state_value_id == 2 }}'
+    sequence: !input 'button_a_held'
+  - conditions: '{{ scene_id == 2 and state_value_id == 2 }}'
     sequence: !input 'button_b_held'
-  - conditions: '{{ scene_id == 2 and state_value_id == 3 }}'
-    sequence: !input 'button_a2'
-  - conditions: '{{ scene_id == 1 and state_value_id == 3 }}'
-    sequence: !input 'button_b2'
-  - conditions: '{{ scene_id == 2 and state_value_id == 4 }}'
-    sequence: !input 'button_a3'
-  - conditions: '{{ scene_id == 1 and state_value_id == 4 }}'
-    sequence: !input 'button_b3'
-  - conditions: '{{ scene_id == 2 and state_value_id == 5 }}'
-    sequence: !input 'button_a4'
-  - conditions: '{{ scene_id == 1 and state_value_id == 5 }}'
-    sequence: !input 'button_b4'
-  - conditions: '{{ scene_id == 2 and state_value_id == 6 }}'
-    sequence: !input 'button_a5'
-  - conditions: '{{ scene_id == 1 and state_value_id == 6 }}'
-    sequence: !input 'button_b5'
